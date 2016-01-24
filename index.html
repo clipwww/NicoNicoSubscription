@@ -56,7 +56,7 @@
 				},".nicoBox a");
 				$("#closJumpIfr").click(function(){
 					$("#jumoVideo").fadeOut(500);
-					$("#jumpIframe").contents().find("#video").pause();
+					$("#jumpIframe").attr("src", "");
 				});
 
 				$(window).scroll(function() {
