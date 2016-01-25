@@ -21,6 +21,7 @@
 				var iframeURL = "http://ext.nicovideo.jp/thumb/";
 				var aniInfo = "http://ext.nicovideo.jp/api/getthumbinfo/";
 				var jumpSrc = "http://sp.nicovideo.jp/watch/";
+				var nicoFlv = "http://flapi.nicovideo.jp/api/getflv/";
 
 				$("#menu li[name]").click(getUserChannel);
 				$("#menu li[id]").click(getNicoRank);
@@ -75,6 +76,7 @@
 				});
 
 
+
 				function getNicoRank(){
 					var target = "fav";
 					var time = $(this).attr("id");
@@ -94,7 +96,7 @@
 						$("#main").text("");
 						iframeHTML.length=0;
 
-						var maxAnime = 15;
+						var maxAnime = 99;
 						$.each(anime, function(i, douGa){
 							if(i < maxAnime){
 								var title = douGa.title;
@@ -224,6 +226,7 @@
 				        "?q=" + encodeURIComponent("select * from xml where url='" + searLink + "'"),
 				        "&format=json&callback=?"
 			   	 	].join("");
+			   	 	console.log(searURL);
 
 					$.getJSON( searURL, function(data){
 						var title = data.query.results.rss.channel.title;
@@ -302,7 +305,7 @@
 								<option value="">選一個Tag</option>
 								<option value="日常">日常</option>
 								<option value="台湾">台湾</option>
-								<option value="手書き艦こ">手書き艦これ</option>
+								<option value="手書き艦これ">手書き艦これ</option>
 								<option value="艦これ">艦これ</option>
 							</select>
 							<button name="Tag" class="btn btn-primary">送出</button>
