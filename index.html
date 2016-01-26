@@ -25,6 +25,7 @@
 
 				$("#menu li[name]").click(getUserChannel);
 				$("#menu li[id]").click(getNicoRank);
+				$("#menu li[myList]").click(getMyList);
 				$("button[name='Tag']").click(searchTagNico);
 
 				$("#main").on({
@@ -147,7 +148,7 @@
 				function getUserChannel(){
 					var userID = $(this).attr("name");
 					var uChannel = "http://www.nicovideo.jp/user/"+ userID +"/video?rss=2.0";
-					
+
 					var userURL = [
 				    	"http://query.yahooapis.com/v1/public/yql",
 				        "?q=" + encodeURIComponent("select * from xml where url='" + uChannel + "'"),
@@ -263,7 +264,7 @@
 								nicoHTML +=	"<p class=\"title\">" + title + "</p><hr/>";
 								nicoHTML += "<a href=\""+ jumpSrc + aniSrc +"\" >點我看影片</a>";
 								nicoHTML += "<div class=\"hide\">"+ descrip + "</div>";
-								nicoHTML += aniImg + "<p><p>"+ videoTime +"</p>";
+								nicoHTML += aniImg + videoTime;
 								nicoHTML +=	"<hr/><span>投稿時間:</span> "+ upTime.replace(/：/g,":");
 								nicoHTML +=	"</div></div>";
 
@@ -275,6 +276,58 @@
 								}//end if
 							}//end if
 						});//end each
+					});//end getJSON
+				}//end function
+
+				function getMyList(){	
+					var listID = $(this).attr("myList");
+					var listLink = "http://www.nicovideo.jp/mylist/"+ listID +"?rss=2.0";
+					
+					var listURL = [
+				    	"http://query.yahooapis.com/v1/public/yql",
+				        "?q=" + encodeURIComponent("select * from xml where url='" + listLink + "'"),
+				        "&format=json&callback=?"
+			   	 	].join("");
+			   	 	console.log(listURL);
+
+					$.getJSON( listURL, function(data){
+						var title = data.query.results.rss.channel.title;
+						var anime = data.query.results.rss.channel.item;
+						$("header #pageName").text(title);
+						$("#main").text("");
+						iframeHTML.length=0;
+
+						var maxAnime = 9;
+						$.each(anime, function(i, douGa){
+							if(i < maxAnime){
+								var title = douGa.title;
+								var link = douGa.link;
+								var num_of_cut = link.indexOf("watch/");
+								var aniSrc = link.substring(num_of_cut+6, link.length);
+
+								var descrip = douGa.description;
+
+								iframeHTML.push("<iframe src=\""+ iframeURL + aniSrc +"\" width=\"100%\" height=\"280px\" frameborder=\"0\" scrolling=\"no\" class=\"miniIfeame\" ></iframe>"); 		
+
+								nicoHTML += "<div class=\"col-sm-4\"><div class=\"nicoBox\">";
+								nicoHTML += "<h1 class=\"btn btn-block btn-info\"";
+								nicoHTML +=	"name=\""+ i +"\">";
+								nicoHTML += (i+1) +"</h1><div id=\"iFra\" class=\"hide\"></div>";
+								nicoHTML +=	"<p class=\"title\">" + title + "</p><hr/>";
+								nicoHTML += "<a href=\""+ jumpSrc + aniSrc +"\" >點我看影片</a>";
+								nicoHTML += "<div>"+ descrip + "</div>";
+								nicoHTML +=	"</div></div>";
+
+								if( (i+1) % 3 === 0){
+									$("<div/>",{
+										"class":"row"
+									}).appendTo('#main').append(nicoHTML);
+									nicoHTML = "";
+								}//end if
+							}//end if
+						});//end each
+					}).done(function(){
+						$(".nico-description").addClass("hide");
 					});//end getJSON
 				}//end function
 
@@ -313,7 +366,7 @@
 					</div>
 					<div id="menu" class="col-sm-6">
 						<ul>		
-							<li name="91090">ニコニコ週刊</li>
+							<li myList="12653834">ニコニコ週刊</li>
 							<li name="2620730">凪尾さん</li>
 							<li name="12433178" >アブさん（イカ）</li>
 							<li name="14613584" >アブさん</li>
