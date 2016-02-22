@@ -55,11 +55,11 @@ header{
 }
 #main{
 	min-height: 100vh;
-	background-image: url("../image/akarinG.gif");
+/*	background-image: url("../image/akarinG.gif");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: left bottom;
-	background-size:20%;	
+	background-size:20%;*/	
 	padding-top:100px;
 }
 .nicoBox{
