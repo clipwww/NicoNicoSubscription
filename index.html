@@ -11,17 +11,22 @@
 		<link href="css/reset.css" rel="stylesheet"> 	
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/Animate.css" rel="stylesheet">
-		<!--自己寫的css要最後一個讀取-->
-		<link href="css/niconico.css" rel="stylesheet">
-		<script src="js/jquery-2.2.0.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/ready.js"></script>
-
+	
 		<!-- REACT JS lib -->
 		<script src="js/react.js"></script>
 	    <script src="js/react-dom.js"></script>
 	    <script src="js/browser.js"></script>
 	    <script src="js/remarkable.min.js"></script>
+
+		<!--自己寫的css要最後一個讀取-->
+		<link href="css/niconico.css" rel="stylesheet">
+		<script src="js/jquery-2.2.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script type="text/babel" src="js/nicopage.js"></script>
+		<script type="text/babel" src="js/ready.js"></script>
+
+		
+	    
 	    <script type="text/babel">
 	    	//react.js here
 
@@ -29,48 +34,8 @@
 
 	</head>
 	<body>
-		<header>
-			<div class="container">
-				<div class="row">
-					<div id="fromDiv" class="col-sm-6">
-						<div class="form-group">
-							<label for="Sort" class="control-label">選擇一個搜尋方式</label>
-							<select name="Sort" id="Sort" class="form-control">
-								<option value="sort=f">投稿が新しい順</option>
-								<option value="sort=v">再生が多い順</option>
-								<option value="order=a">コメントが新しい順</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="what" class="control-label">找什麼？（Tag搜尋）</label>
-							<input name="what" type="text" id="what" class="form-control" placeholder="輸入要搜尋的Tag">
-						</div>
-						<div class="form-group">
-							<label for="Tag" class="control-label">或直接</label>
-							<select name="Tag" id="Tag" class="form-control">
-								<option value="">選一個Tag</option>
-								<option value="日常">日常</option>
-								<option value="台湾">台湾</option>
-								<option value="手書き艦これ">手書き艦これ</option>
-								<option value="艦これ">艦これ</option>
-							</select>
-							<button name="Tag" class="btn btn-primary">送出</button>
-						</div>
-					</div>
-					<div id="menu" class="col-sm-6">
-						<ul>		
-							<li myList="12653834">ニコニコ週刊</li>
-							<li name="2620730">凪尾さん</li>
-							<li name="12433178" >アブさん（イカ）</li>
-							<li name="14613584" >アブさん</li>
-							<li id="weekly">週排行</li>
-							<li id="dayily">日排行</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<span id="menuIcon" class="glyphicon glyphicon-menu-hamburger" ></span>
-			<span id="pageName" >Nico Nico</span>
+		<header id ="headerpage">
+			
 		</header>
 		
 		<div id="main" class="container">

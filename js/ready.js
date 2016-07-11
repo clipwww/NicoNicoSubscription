@@ -1,4 +1,5 @@
 $(function(){
+		console.log("in ready js");
 				var nicoHTML="";
 				//var iframeHTML = new Array;
 				var iframeHTML = [];
@@ -11,7 +12,7 @@ $(function(){
 				$("#menu li[id]").click(getNicoRank);
 				$("#menu li[myList]").click(getMyList);
 				$("button[name='Tag']").click(searchTagNico);
-
+		console.log($("#menuIcon"));
 				$("#main").on({
 					click: function(e){
 						var msg = $(this).parent("p").siblings("div").children('.nico-description').text();
@@ -50,6 +51,7 @@ $(function(){
 				});
 
 				$("#menuIcon").click(function(){
+					console.log("in #menuIcon");
 					if( $("header").css("top") === "0px" ){
 						$("header").animate({"top":"-440px"}, 600);
 					}else{
